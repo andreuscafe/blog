@@ -1,5 +1,5 @@
 ---
-title: "¿Cómo funciona un blog?"
+title: "¿Qué comen los zorritos?"
 excerpt: "El blog es un medio que nace con la llegada de internet como una nueva manera de contarle al mundo lo que pensamos. Sobre cosas."
 coverImage: "/assets/blog/hello-world/cover.jpg"
 date: "2020-03-16T05:35:07.322Z"
