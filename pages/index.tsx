@@ -7,6 +7,7 @@ import { getAllPosts } from "../lib/api";
 import Head from "next/head";
 import { CMS_NAME } from "../lib/constants";
 import Post from "../interfaces/post";
+import PostPreview from "../components/post-preview";
 
 type Props = {
   allPosts: Post[];
@@ -23,7 +24,7 @@ export default function Index({ allPosts }: Props) {
         </Head>
         <Container>
           <Intro />
-          {heroPost && (
+          {/* {heroPost && (
             <HeroPost
               title={heroPost.title}
               coverImage={heroPost.coverImage}
@@ -32,8 +33,28 @@ export default function Index({ allPosts }: Props) {
               slug={heroPost.slug}
               excerpt={heroPost.excerpt}
             />
+          )} */}
+
+          {!heroPost && (
+            <section className="text-2xl">
+              Todavía no hay nada para leer acá.
+            </section>
           )}
-          {morePosts.length > 0 && <MoreStories posts={morePosts} />}
+
+          <div className="grid grid-cols-1 md:grid-cols-1 md:gap-x-16 lg:gap-x-32 gap-y-20 md:gap-y-16 mb-32">
+            {allPosts.map((post) => (
+              <PostPreview
+                key={post.slug}
+                title={post.title}
+                coverImage={post.coverImage}
+                date={post.date}
+                author={post.author}
+                slug={post.slug}
+                excerpt={post.excerpt}
+              />
+            ))}
+          </div>
+          {/* {morePosts.length > 0 && <MoreStories posts={morePosts} />} */}
         </Container>
       </Layout>
     </>

@@ -1,5 +1,5 @@
 .markdown {
-  @apply text-lg leading-relaxed;
+  @apply text-base leading-normal;
 }
 
 .markdown p,
@@ -15,4 +15,12 @@
 
 .markdown h3 {
   @apply text-2xl mt-8 mb-4 leading-snug;
+}
+
+.markdown img {
+  @apply rounded-lg;
+}
+
+.markdown a {
+  @apply text-blue-500 hover:text-blue-300;
 }

@@ -23,30 +23,29 @@ export default function Post({ post, morePosts }: Props) {
   if (!router.isFallback && !post?.slug) {
     return <ErrorPage statusCode={404} />;
   }
+
   return (
     <Layout>
-      <Container>
-        <Header />
-        {router.isFallback ? (
-          <PostTitle>Loading…</PostTitle>
-        ) : (
-          <>
-            <article className="mb-32">
-              <Head>
-                <title>{title}</title>
-                <meta property="og:image" content={post.ogImage.url} />
-              </Head>
-              <PostHeader
-                title={post.title}
-                coverImage={post.coverImage}
-                date={post.date}
-                author={post.author}
-              />
-              <PostBody content={post.content} />
-            </article>
-          </>
-        )}
-      </Container>
+      <Header />
+      {router.isFallback ? (
+        <PostTitle>Loading…</PostTitle>
+      ) : (
+        <>
+          <article>
+            <Head>
+              <title>{title}</title>
+              <meta property="og:image" content={post.ogImage.url} />
+            </Head>
+            <PostHeader title={post.title} coverImage={post.coverImage} />
+            <PostBody
+              date={post.date}
+              author={post.author}
+              content={post.content}
+              excerpt={post.excerpt}
+            />
+          </article>
+        </>
+      )}
     </Layout>
   );
 }
@@ -65,7 +64,8 @@ export async function getStaticProps({ params }: Params) {
     "author",
     "content",
     "ogImage",
-    "coverImage"
+    "coverImage",
+    "excerpt"
   ]);
   const content = await markdownToHtml(post.content || "");
 
